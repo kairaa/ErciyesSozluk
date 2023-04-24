@@ -13,6 +13,9 @@ namespace ErciyesSozluk.Infrastructure.Persistence.Context
     {
         public const string DEFAULT_SCHEMA = "dbo";
 
+        public ErciyesSozlukContext()
+        {
+        }
         public ErciyesSozlukContext(DbContextOptions options) : base(options)
         {
         }
@@ -28,6 +31,19 @@ namespace ErciyesSozluk.Infrastructure.Persistence.Context
         public DbSet<EntryCommentFavorite> EntryCommentFavorites { get; set; }
 
         public DbSet<EmailConfirmation> EmailConfirmations { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var connStr = "Data Source=localhost; Initial Catalog=erciyessozluk; Persist Security Info=True; User ID=sa; Password=Aa7waw37x.; TrustServerCertificate=True;";
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(connStr, opt =>
+                {
+                    //baglanti sirasinda bir hata meydana gelirse retry mekanizmasi devreye girer
+                    opt.EnableRetryOnFailure();
+                });
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
