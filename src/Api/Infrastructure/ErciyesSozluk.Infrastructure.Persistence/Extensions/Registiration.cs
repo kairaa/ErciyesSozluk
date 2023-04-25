@@ -1,4 +1,6 @@
-﻿using ErciyesSozluk.Infrastructure.Persistence.Context;
+﻿using ErciyesSozluk.Api.Application.Interfaces.Repositories;
+using ErciyesSozluk.Infrastructure.Persistence.Context;
+using ErciyesSozluk.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +31,11 @@ namespace ErciyesSozluk.Infrastructure.Persistence.Extensions
             //bundan dolayı bu iki satır yorum satırı yapılır
             //var seedData = new SeedData();
             //seedData.SeedAsync(configuration).GetAwaiter().GetResult();
+
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IEmailConfirmationRepository, EmailConfirmationRepository>();
+            services.AddScoped<IEntryRepository, EntryRepository>();
+            services.AddScoped<IEntryCommentRepository, EntryCommentRepository>();
 
             return services;
         }

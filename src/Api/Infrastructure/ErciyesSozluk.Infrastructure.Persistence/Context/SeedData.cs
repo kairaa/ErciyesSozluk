@@ -40,6 +40,13 @@ namespace ErciyesSozluk.Infrastructure.Persistence.Context
 
             var context = new ErciyesSozlukContext(dbContextBuilder.Options);
 
+            if (context.Users.Any())
+            {
+                //tabloda herhangi bir veri varsa seed islemini onler
+                await Task.CompletedTask;
+                return;
+            }
+
             var users = GetUsers();
             var userIds = users.Select(i => i.Id);
 
