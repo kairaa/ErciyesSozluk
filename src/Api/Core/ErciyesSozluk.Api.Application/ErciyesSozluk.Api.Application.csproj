@@ -25,10 +25,8 @@
   <ItemGroup>
     <Folder Include="Features\Commands\Entry\" />
     <Folder Include="Features\Commands\EntryComment\" />
-    <Folder Include="Features\Commands\User\Create\" />
     <Folder Include="Features\Commands\User\ChangePassword\" />
     <Folder Include="Features\Commands\User\ConfirmEmail\" />
-    <Folder Include="Features\Commands\User\Update\" />
     <Folder Include="Features\Queries\" />
   </ItemGroup>
 

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ErciyesSozluk.Api.Domain.Models;
 using ErciyesSozluk.Common.Models.Queries;
+using ErciyesSozluk.Common.Models.RequestModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace ErciyesSozluk.Api.Application.Mapping
         public MappingProfile()
         {
             CreateMap<User, LoginUserViewModel>().ReverseMap();
+            CreateMap<User, CreateUserCommand>().ReverseMap();
+            CreateMap<User, UpdateUserCommand>().ReverseMap();
         }
     }
 }

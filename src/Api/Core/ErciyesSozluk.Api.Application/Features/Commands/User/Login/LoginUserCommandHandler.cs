@@ -57,8 +57,8 @@ namespace ErciyesSozluk.Api.Application.Features.Commands.User.Login
                 new Claim(ClaimTypes.NameIdentifier, dbUser.Id.ToString()),
                 new Claim(ClaimTypes.Email, dbUser.EmailAddress),
                 new Claim(ClaimTypes.Name, dbUser.UserName),
-                new Claim(ClaimTypes.GivenName, dbUser.FirstName),
-                new Claim(ClaimTypes.Surname, dbUser.LastName),
+                //new Claim(ClaimTypes.GivenName, dbUser.FirstName),
+                //new Claim(ClaimTypes.Surname, dbUser.LastName),
             };
 
             result.Token = GenerateToken(claims);
