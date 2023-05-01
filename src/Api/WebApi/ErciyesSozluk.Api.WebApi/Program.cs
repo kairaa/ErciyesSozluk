@@ -1,14 +1,27 @@
+using ErciyesSozluk.Api.Application.Extensions;
 using ErciyesSozluk.Infrastructure.Persistence.Extensions;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddControllers()
+    .AddJsonOptions(opt =>
+    {
+        opt.JsonSerializerOptions.PropertyNamingPolicy = null;
+    })
+    .AddFluentValidation();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//application registiration
+builder.Services.AddApplicationRegistiration();
+
+//infrastructure registiration
 builder.Services.AddInfrastructureRegistiration(builder.Configuration);
 
 var app = builder.Build();
