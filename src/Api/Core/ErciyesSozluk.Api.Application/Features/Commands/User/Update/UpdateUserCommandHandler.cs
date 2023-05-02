@@ -49,7 +49,9 @@ namespace ErciyesSozluk.Api.Application.Features.Commands.User.Update
             {
                 var @event = new UserEmailChangedEvent()
                 {
-                    OldEmailAddress = null,
+                    //email update edildiginde kuyruga oldemail olarak eski email verilir,
+                    //dogru calisip calismadigi henuz kontrol edilmedi
+                    OldEmailAddress = dbEmailAddress,
                     NewEmailAddress = dbUser.EmailAddress
                 };
 
