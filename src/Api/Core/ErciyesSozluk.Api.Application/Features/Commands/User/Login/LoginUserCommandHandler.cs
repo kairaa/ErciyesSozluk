@@ -23,6 +23,7 @@ namespace ErciyesSozluk.Api.Application.Features.Commands.User.Login
         private readonly IUserRepository userRepository;
         private readonly IMapper mapper;
         private readonly IConfiguration configuration;
+        //appsettings.json'dan secretkey cekilecegi icin iconfiguration kullanilir
 
         public LoginUserCommandHandler(IUserRepository userRepository, IMapper mapper, IConfiguration configuration)
         {

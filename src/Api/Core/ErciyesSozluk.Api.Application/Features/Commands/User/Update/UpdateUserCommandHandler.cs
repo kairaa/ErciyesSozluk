@@ -40,6 +40,7 @@ namespace ErciyesSozluk.Api.Application.Features.Commands.User.Update
             //request'teki değerler dbuser'a yazılır
             mapper.Map(request, dbUser);
 
+            //rows sayisi 0'dan buyukse vari tabaninda yapilan islemin basarili oldugu anlasilir
             var rows = await userRepository.UpdateAsync(dbUser);
 
             //TODO: email ve username icin baskasinda olup olmadigini kontrol et
@@ -47,6 +48,7 @@ namespace ErciyesSozluk.Api.Application.Features.Commands.User.Update
             //check if email changed
             if (emailChanged && rows > 0)
             {
+                //queue'ya gonderilecek objeler event olarak olsuturulur
                 var @event = new UserEmailChangedEvent()
                 {
                     //email update edildiginde kuyruga oldemail olarak eski email verilir,

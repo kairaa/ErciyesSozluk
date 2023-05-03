@@ -19,6 +19,9 @@ namespace ErciyesSozluk.Common.Infrastructure
                 .EnsureQueue(queueName, exchangeName)
                 .Model;
 
+            //JSON olarak gelen mesaj serialize edilerek string'e cevrilir
+            //sonrasinda encode edilip bytearray'e cevrilir
+            //BODY'ye gelen obj'ler eventlerdir
             var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(obj));
 
             channel.BasicPublish(exchange: exchangeName, routingKey: queueName, basicProperties: null, body: body);
