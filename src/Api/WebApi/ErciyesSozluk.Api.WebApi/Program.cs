@@ -1,4 +1,5 @@
 using ErciyesSozluk.Api.Application.Extensions;
+using ErciyesSozluk.Api.WebApi.Infrastructure.Extensions;
 using ErciyesSozluk.Infrastructure.Persistence.Extensions;
 using FluentValidation.AspNetCore;
 
@@ -24,6 +25,10 @@ builder.Services.AddApplicationRegistiration();
 //infrastructure registiration
 builder.Services.AddInfrastructureRegistiration(builder.Configuration);
 
+//authregistiration eklenir, authorization için eklenir
+//ui tarafindaki isler hallolana kadar controller'lara eklenmedi, hallolduktan sonra eklenecek
+builder.Services.ConfigureAuth(builder.Configuration);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -35,6 +40,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+//development ise hata mesajinin detaylari alinir, degilse sadece kisa bir bilgilendirme mesaji alinir
+app.ConfigureExceptionHandling(includeExceptionDetails: app.Environment.IsDevelopment());
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
