@@ -22,8 +22,4 @@
     <ProjectReference Include="..\ErciyesSozluk.Api.Domain\ErciyesSozluk.Api.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Queries\" />
-  </ItemGroup>
-
 </Project>

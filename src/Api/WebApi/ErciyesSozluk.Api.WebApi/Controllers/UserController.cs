@@ -1,4 +1,5 @@
 ﻿using ErciyesSozluk.Api.Application.Features.Commands.User.ConfirmEmail;
+using ErciyesSozluk.Api.Application.Features.Queries.GetUserDetail;
 using ErciyesSozluk.Common.Models.RequestModels;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -62,6 +63,23 @@ namespace ErciyesSozluk.Api.WebApi.Controllers
             var guid = await mediator.Send(command);
 
             return Ok(guid);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(Guid id)
+        {
+            var user = await mediator.Send(new GetUserDetailQuery(id));
+
+            return Ok(user);
+        }
+
+        [HttpGet]
+        [Route("UserName/{userName}")]
+        public async Task<IActionResult> GetByUserName(string userName)
+        {
+            var user = await mediator.Send(new GetUserDetailQuery(Guid.Empty, userName));
+
+            return Ok(user);
         }
 
     }

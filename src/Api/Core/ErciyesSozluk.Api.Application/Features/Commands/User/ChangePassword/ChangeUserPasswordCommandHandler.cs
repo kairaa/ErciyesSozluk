@@ -40,7 +40,7 @@ namespace ErciyesSozluk.Api.Application.Features.Commands.User.ChangePassword
                 throw new DatabaseValidationException("Old password wrong");
             }
 
-            dbUser.Password = encPass;
+            dbUser.Password = PasswordEncryptor.Encrypt(request.NewPassword);
 
             await userRepository.UpdateAsync(dbUser);
 

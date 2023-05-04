@@ -14,7 +14,8 @@ namespace ErciyesSozluk.Api.Application.Features.Commands.User.Create
         {
             RuleFor(i => i.EmailAddress).NotNull()
                 .EmailAddress(FluentValidation.Validators.EmailValidationMode.AspNetCoreCompatible)
-                .WithMessage("{PropertyName} not a valid email address");
+                .WithMessage("{PropertyName} not a valid email address")
+                .Matches(@"^\d{10}@erciyes\.edu\.tr$").WithMessage("You must enter university mail address");
 
             RuleFor(i => i.Password).NotNull()
                 .MinimumLength(6)
