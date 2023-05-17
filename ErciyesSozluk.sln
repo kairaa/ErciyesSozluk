@@ -21,23 +21,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{415535
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlazorWeb", "BlazorWeb", "{7BC41DF8-B385-4A6B-B68A-E8F200D8CCE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErciyesSozluk.Common", "src\Common\ErciyesSozluk.Common\ErciyesSozluk.Common.csproj", "{3932684A-EBE5-4451-9F51-4170C2A3ABE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErciyesSozluk.Common", "src\Common\ErciyesSozluk.Common\ErciyesSozluk.Common.csproj", "{3932684A-EBE5-4451-9F51-4170C2A3ABE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErciyesSozluk.Api.Domain", "src\Api\Core\ErciyesSozluk.Api.Domain\ErciyesSozluk.Api.Domain.csproj", "{33EE5D94-4E5A-4EF5-81D8-8BBE2AF10615}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErciyesSozluk.Api.Domain", "src\Api\Core\ErciyesSozluk.Api.Domain\ErciyesSozluk.Api.Domain.csproj", "{33EE5D94-4E5A-4EF5-81D8-8BBE2AF10615}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErciyesSozluk.Api.Application", "src\Api\Core\ErciyesSozluk.Api.Application\ErciyesSozluk.Api.Application.csproj", "{D8F2D33B-2DA0-4C46-8913-A819ADAF54B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErciyesSozluk.Api.Application", "src\Api\Core\ErciyesSozluk.Api.Application\ErciyesSozluk.Api.Application.csproj", "{D8F2D33B-2DA0-4C46-8913-A819ADAF54B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErciyesSozluk.Infrastructure.Persistence", "src\Api\Infrastructure\ErciyesSozluk.Infrastructure.Persistence\ErciyesSozluk.Infrastructure.Persistence.csproj", "{0371638B-8755-4124-838D-B170036C7B77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErciyesSozluk.Infrastructure.Persistence", "src\Api\Infrastructure\ErciyesSozluk.Infrastructure.Persistence\ErciyesSozluk.Infrastructure.Persistence.csproj", "{0371638B-8755-4124-838D-B170036C7B77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErciyesSozluk.Api.WebApi", "src\Api\WebApi\ErciyesSozluk.Api.WebApi\ErciyesSozluk.Api.WebApi.csproj", "{7ACDB516-448D-4431-9639-E4BC95DA2734}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErciyesSozluk.Api.WebApi", "src\Api\WebApi\ErciyesSozluk.Api.WebApi\ErciyesSozluk.Api.WebApi.csproj", "{7ACDB516-448D-4431-9639-E4BC95DA2734}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErciyesSozluk.Projections.FavoriteService", "src\Projections\ErciyesSozluk.Projections.FavoriteService\ErciyesSozluk.Projections.FavoriteService.csproj", "{334C1C15-6F87-4A07-B6EF-BD6AB5F77DFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErciyesSozluk.Projections.FavoriteService", "src\Projections\ErciyesSozluk.Projections.FavoriteService\ErciyesSozluk.Projections.FavoriteService.csproj", "{334C1C15-6F87-4A07-B6EF-BD6AB5F77DFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErciyesSozluk.Projections.VoteService", "src\Projections\ErciyesSozluk.Projections.VoteService\ErciyesSozluk.Projections.VoteService.csproj", "{FB47E11B-E26C-41F6-BCDF-427FAFE7F939}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErciyesSozluk.Projections.VoteService", "src\Projections\ErciyesSozluk.Projections.VoteService\ErciyesSozluk.Projections.VoteService.csproj", "{FB47E11B-E26C-41F6-BCDF-427FAFE7F939}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErciyesSozluk.Projections.UserService", "src\Projections\ErciyesSozluk.Projections.UserService\ErciyesSozluk.Projections.UserService.csproj", "{0673E0FB-F734-43E1-9C3F-46BE7BED7001}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErciyesSozluk.Projections.UserService", "src\Projections\ErciyesSozluk.Projections.UserService\ErciyesSozluk.Projections.UserService.csproj", "{0673E0FB-F734-43E1-9C3F-46BE7BED7001}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErciyesSozluk.WebApp", "src\Clients\BlazorWeb\ErciyesSozluk.WebApp\ErciyesSozluk.WebApp.csproj", "{C37341F5-5F63-4C13-8180-F8A5DEE8FEB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErciyesSozluk.WebApp", "src\Clients\BlazorWeb\ErciyesSozluk.WebApp\ErciyesSozluk.WebApp.csproj", "{C37341F5-5F63-4C13-8180-F8A5DEE8FEB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
