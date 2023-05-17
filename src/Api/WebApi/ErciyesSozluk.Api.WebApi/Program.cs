@@ -29,6 +29,14 @@ builder.Services.AddInfrastructureRegistiration(builder.Configuration);
 //ui tarafindaki isler hallolana kadar controller'lara eklenmedi, hallolduktan sonra eklenecek
 builder.Services.ConfigureAuth(builder.Configuration);
 
+//cors icin olusturulan policy ve eklenmesi
+builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+}));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -45,6 +53,8 @@ app.ConfigureExceptionHandling(includeExceptionDetails: app.Environment.IsDevelo
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseCors("MyPolicy");
 
 app.MapControllers();
 
