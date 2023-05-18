@@ -11,7 +11,7 @@ namespace ErciyesSozluk.Api.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class VoteController : BaseController
     {
         private readonly IMediator mediator;

@@ -1,0 +1,100 @@
+﻿@using ErciyesSozluk.Common.ViewModels;
+@using ErciyesSozluk.WebApp.Infrastructure.Models;
+@using ErciyesSozluk.WebApp.Pages.Entry.Components
+@using ErciyesSozluk.WebApp.Pages.Entry.RateComponents
+@if (Entry != null)
+{
+
+    <div class="card border-0">
+
+        <div class="card-body">
+            <h5 class="card-title"><a href="/entry/@Entry.Id"><strong style="font-size:1.4rem;" class="entry-subject">@Entry.Subject</strong></a> </h5>
+            <br />
+            <p class="entry-content">@Entry.Content</p>
+
+            @if (MyEntries)
+            {
+                <EntryFooterFavoriteComponent EntryId="@Entry.Id"
+                                      OnFavClicked="@OnFavClicked"
+                                      FavoritedCount="@Entry.FavoritedCount"
+                                      IsFavorited="@Entry.IsFavorited" />
+            }
+            else
+            {
+                <EntryFooterRateFavoriteComponent EntryId="@Entry.Id"
+                                          OnFavClicked="@OnFavClicked"
+                                          OnVoteClicked="@OnVoteClicked"
+                                          Vote="@Entry.VoteType"
+                                          FavoritedCount="@Entry.FavoritedCount"
+                                          IsFavorited="@Entry.IsFavorited" />
+            }
+
+            <EntryFooterAuthorComponent UserName="@Entry.CreatedByUserName"
+                                    CreateDate="@Entry.CreatedDate" />
+
+        </div>
+    </div>
+}
+
+
+@code {
+
+    [Parameter]
+    public GetEntryDetailViewModel Entry { get; set; }
+
+    [Parameter]
+    public bool MyEntries { get; set; }
+
+    [Inject]
+    IVoteService voteService { get; set; }
+
+    [Inject]
+    IFavService favService { get; set; }
+
+    private async Task OnFavClicked(FavClickedEventArgs args)
+    {
+        if (args.IsFaved)
+        {
+            //entry'nin başlangıçta fav'lanmadığı, fav butonuna fav'a eklemek için tıklanıldığı durum
+            await favService.CreateEntryFav(args.EntryId.Value);
+            Entry.IsFavorited = true;
+            Entry.FavoritedCount++;
+        }
+        else
+        {
+            //entry'nin başlangıçta fav'landığı, fav butonuna fav'ı silmek için tıklanıldığı durum
+            await favService.DeleteEntryFav(args.EntryId.Value);
+            Entry.IsFavorited = false;
+            Entry.FavoritedCount--;
+        }
+
+        StateHasChanged();
+    }
+
+    private async Task OnVoteClicked(VoteClickedEventArgs args)
+    {
+        if (args.UpVoteDeleted || args.DownVoteDeleted)
+        {
+            //entry'nin başlangıçta vote'landığı, vote'u silmek için tıklanılan durum
+            await voteService.DeleteEntryVote(args.EntryId);
+            Entry.VoteType = VoteType.None;
+            return;
+        }
+
+        if (args.IsUpVoteClicked)
+        {
+            //entry'nin upvote'landığı durum
+            await voteService.CreateEntryUpVote(args.EntryId);
+            Entry.VoteType = VoteType.UpVote;
+            return;
+        }
+
+        if (args.IsDownVoteClicked)
+        {
+            //entry'nin downvote'landığı durum
+            await voteService.CreateEntryDownVote(args.EntryId);
+            Entry.VoteType = VoteType.DownVote;
+            return;
+        }
+    }
+}
