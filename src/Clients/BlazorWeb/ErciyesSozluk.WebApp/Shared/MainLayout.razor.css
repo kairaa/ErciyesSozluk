@@ -5,6 +5,10 @@
     position: sticky;
 }
 
+.my-logo{
+    height: 29px;
+}
+
 .logo {
     margin-top: 10px;
     background-color: white;
@@ -45,6 +49,7 @@ a.top-nav-item:hover {
     width: 250px;
     height: 50px;
 }
+
 
     .search-box > ul > li > a {
         cursor: pointer;

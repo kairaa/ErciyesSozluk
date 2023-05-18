@@ -22,9 +22,9 @@ namespace ErciyesSozluk.Common.Models.RequestModels
 
         //normalde kullanılmalı, ancak bu olunca swagger'da şablon olmuyor,
         //bundan dolayı şimdilik yorum satırı yapıldı
-        //public LoginUserCommand()
-        //{
+        public LoginUserCommand()
+        {
 
-        //}
+        }
     }
 }

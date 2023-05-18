@@ -2,6 +2,7 @@
 using ErciyesSozluk.Api.Application.Features.Queries.GetUserDetail;
 using ErciyesSozluk.Common.Models.RequestModels;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,6 +37,7 @@ namespace ErciyesSozluk.Api.WebApi.Controllers
 
         [HttpPost]
         [Route("Update")]
+        [Authorize]
         public async Task<IActionResult> Update([FromBody] UpdateUserCommand command)
         {
             var guid = await mediator.Send(command);
@@ -54,6 +56,7 @@ namespace ErciyesSozluk.Api.WebApi.Controllers
 
         [HttpPost]
         [Route("ChangePassword")]
+        [Authorize]
         public async Task<IActionResult> ChangePassword([FromBody] ChangeUserPasswordCommand command)
         {
             if (!command.UserId.HasValue)

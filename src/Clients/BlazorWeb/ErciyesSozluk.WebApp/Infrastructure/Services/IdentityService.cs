@@ -3,8 +3,10 @@ using ErciyesSozluk.Common.Infrastructure.Exceptions;
 using ErciyesSozluk.Common.Infrastructure.Results;
 using ErciyesSozluk.Common.Models.Queries;
 using ErciyesSozluk.Common.Models.RequestModels;
+using ErciyesSozluk.WebApp.Infrastructure.Auth;
 using ErciyesSozluk.WebApp.Infrastructure.Extensions;
 using ErciyesSozluk.WebApp.Infrastructure.Services.Interfaces;
+using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http.Json;
 using System.Text.Json;
 
@@ -14,12 +16,13 @@ namespace ErciyesSozluk.WebApp.Infrastructure.Services
     {
         private readonly HttpClient httpClient;
         private readonly ISyncLocalStorageService syncLocalStorageService;
+        private readonly AuthenticationStateProvider authenticationStateProvider;
 
-
-        public IdentityService(HttpClient httpClient, ISyncLocalStorageService syncLocalStorageService)
+        public IdentityService(HttpClient httpClient, ISyncLocalStorageService syncLocalStorageService, AuthenticationStateProvider authenticationStateProvider)
         {
             this.httpClient = httpClient;
             this.syncLocalStorageService = syncLocalStorageService;
+            this.authenticationStateProvider = authenticationStateProvider;
         }
 
 
@@ -69,7 +72,7 @@ namespace ErciyesSozluk.WebApp.Infrastructure.Services
                 syncLocalStorageService.SetUserId(response.Id);
 
                 //TODO Check after auth
-                //((AuthStateProvider)authStateProvider).NotifyUserLogin(response.UserName, response.Id);
+                ((AuthStateProvider)authenticationStateProvider).NotifyUserLogin(response.UserName, response.Id);
 
                 httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", response.UserName);
 
@@ -79,17 +82,6 @@ namespace ErciyesSozluk.WebApp.Infrastructure.Services
             return false;
         }
 
-        public void Logout()
-        {
-            syncLocalStorageService.RemoveItem(LocalStorageExtension.TokenName);
-            syncLocalStorageService.RemoveItem(LocalStorageExtension.UserName);
-            syncLocalStorageService.RemoveItem(LocalStorageExtension.UserId);
-
-            // TODO Check after auth
-            //((AuthStateProvider)authStateProvider).NotifyUserLogout();
-            httpClient.DefaultRequestHeaders.Authorization = null;
-        }
-
         public async Task<bool> Register(CreateUserCommand command)
         {
             //TODO: implement this register method
@@ -97,5 +89,26 @@ namespace ErciyesSozluk.WebApp.Infrastructure.Services
             var httpResponse = await httpClient.PostAsJsonAsync("/api/User/Register", command);
             return httpResponse.IsSuccessStatusCode;
         }
+
+        public void Logout()
+        {
+            syncLocalStorageService.RemoveItem(LocalStorageExtension.TokenName);
+            syncLocalStorageService.RemoveItem(LocalStorageExtension.UserName);
+            syncLocalStorageService.RemoveItem(LocalStorageExtension.UserId);
+
+            // TODO Check after auth
+            ((AuthStateProvider)authenticationStateProvider).NotifyUserLogout();
+            httpClient.DefaultRequestHeaders.Authorization = null;
+        }
     }
 }
+
+/*
+ * public async Task<bool> Register(CreateUserCommand command)
+        {
+            //TODO: implement this register method
+            //TODO: check this method
+            var httpResponse = await httpClient.PostAsJsonAsync("/api/User/Register", command);
+            return httpResponse.IsSuccessStatusCode;
+        }
+ */

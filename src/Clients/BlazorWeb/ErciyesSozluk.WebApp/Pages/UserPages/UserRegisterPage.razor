@@ -1,0 +1,70 @@
+﻿@page "/register"
+
+@using ErciyesSozluk.Common.Models.RequestModels;
+<div class="login-container">
+    <div class="row justify-content-center align-items-start h-100">
+
+        <div class="login-form">
+
+            <EditForm Model="@createUserCommand" OnValidSubmit="RegisterProcess">
+
+                @if (errorText != string.Empty)
+                {
+                    <span class="text-danger">@errorText</span>
+                    <br />
+                }
+                <div class="form-group">
+                    <input @bind-value="createUserCommand.UserName" class="form-control" type="text" placeholder="User Name" />
+                </div>
+                <br />
+                <div class="form-group">
+                    <input @bind-value="createUserCommand.EmailAddress" class="form-control" type="text" placeholder="Email Address" />
+                </div>
+                <br />
+                <div class="form-group">
+                    <input @bind-value="createUserCommand.Password" class="form-control" type="password" placeholder="Password" />
+                </div>
+                <br />
+                <div class="form-group">
+                    <button class="btn btn-success btn-sozluk">Endeavor to Login</button>
+                </div>
+
+            </EditForm>
+
+        </div>
+
+    </div>
+</div>
+
+@code {
+    [Inject]
+    IIdentityService identityService { get; set; }
+    [Inject]
+    NavigationManager navigationManager { get; set; }
+
+    private CreateUserCommand createUserCommand = new();
+    private string errorText = "";
+
+    public async Task RegisterProcess()
+    {
+        try
+        {
+            var res = await identityService.Register(createUserCommand);
+
+            if (res)
+            {
+                errorText = "";
+                //kayit basarili ise giris sayfasina yonlendirilir
+                navigationManager.NavigateTo("/login");
+            }
+            else
+            {
+                errorText = "Register failed with unknown reasons";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorText = ex.Message;
+        }
+    }
+}

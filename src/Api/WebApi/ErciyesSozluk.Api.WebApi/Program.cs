@@ -12,7 +12,8 @@ builder.Services.AddControllers()
     {
         opt.JsonSerializerOptions.PropertyNamingPolicy = null;
     })
-    .AddFluentValidation();
+    .AddFluentValidation()
+    .ConfigureApiBehaviorOptions(o => o.SuppressModelStateInvalidFilter = true);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

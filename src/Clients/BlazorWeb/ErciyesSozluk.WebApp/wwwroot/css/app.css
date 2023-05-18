@@ -232,3 +232,11 @@ label {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+not-authorized {
+    display: flex;
+}
+
+not-authorized input{
+    margin-right: 10px;
+}

@@ -11,6 +11,11 @@ namespace ErciyesSozluk.Common.Infrastructure.Results
     {
         public IEnumerable<string> Errors { get; set; }
 
+        //login işleminde parametresiz ValidationResponseModel ctor'u olmadığı için hta verdiğinden dolayı eklendi
+        public ValidationResponseModel()
+        {
+
+        }
 
         public ValidationResponseModel(string message) : this(new List<string> { message })
         {

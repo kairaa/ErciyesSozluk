@@ -3,6 +3,7 @@ using ErciyesSozluk.Api.Application.Features.Commands.EntryComment.DeleteVote;
 using ErciyesSozluk.Common.Models.RequestModels;
 using ErciyesSozluk.Common.ViewModels;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,6 +11,7 @@ namespace ErciyesSozluk.Api.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class VoteController : BaseController
     {
         private readonly IMediator mediator;
