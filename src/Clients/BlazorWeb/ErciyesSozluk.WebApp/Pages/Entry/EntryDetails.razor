@@ -1,6 +1,7 @@
 ﻿@page "/entry/{id:guid}"
 @using ErciyesSozluk.Common.Models.Page;
 @using ErciyesSozluk.Common.Models.RequestModels;
+@using ErciyesSozluk.WebApp.Pages.Components
 @using ErciyesSozluk.WebApp.Pages.EntryComment
 @using Microsoft.AspNetCore.Components.Authorization
 
@@ -19,7 +20,11 @@
 
     <br />
     // TODO Pagination Component will be here
-
+    <br />
+    <br />
+    <PaginationComponent TotalPage="@comments.PageInfo.TotalPageCount"
+                         CurrentPage="@currentPage"
+                         OnPageChanged="@OnPageChanged" />
     //giriş yapan kullanıcılar entry'e comment ekleme component'ini görür
     <AuthorizeView>
         <Authorized>
@@ -52,7 +57,7 @@
         //{id:guid} set edileceği zaman çalışır
         entry = await entryService.GetEntryDetail(id);
 
-        await RefreshComments(1);
+        await RefreshComments(currentPage);
 
         currentPage = comments.PageInfo.CurrentPage;
     }
@@ -66,5 +71,11 @@
     private async Task RefreshComments(int pageNumber)
     {
         comments = await entryService.GetEntryComments(entry.Id, pageNumber, 10);
+    }
+
+    public async Task OnPageChanged(int pageNumber)
+    {
+        currentPage = pageNumber;
+        comments = await entryService.GetEntryComments(entry.Id, currentPage, 10);
     }
 }

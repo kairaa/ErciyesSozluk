@@ -1,0 +1,49 @@
+﻿@page "/profile/{UserName}"
+@page "/profile/{UserId:guid}"
+@page "/me"
+@using ErciyesSozluk.Common.Models.Page;
+@using ErciyesSozluk.WebApp.Pages.Components
+@using ErciyesSozluk.WebApp.Pages.Entry
+@using ErciyesSozluk.WebApp.Pages.UserPages.Components
+
+<UserProfileDetailComponent UserName="@UserName" UserId="@UserId" />
+
+
+@if(entries is not null)
+{
+    foreach (var entry in entries.Results)
+    {
+        <EntryViewerComponent Entry="@entry" MyEntries="true" />
+        <br />
+    }
+
+    <br />
+    <PaginationComponent TotalPage="@entries.PageInfo.TotalPageCount"
+                         CurrentPage="@currentPage"
+                         OnPageChanged="@OnPageChanged" />
+}
+
+@code {
+    [Inject]
+    IEntryService entryService { get; set; }
+
+    PagedViewModel<GetEntryDetailViewModel> entries;
+
+    [Parameter]
+    public string UserName { get; set; }
+
+    [Parameter]
+    public Guid UserId { get; set; }
+
+    private int currentPage = 1;
+
+    public async Task OnPageChanged(int pageNumber)
+    {
+        entries = await entryService.GetProfilePageEntries(currentPage, 10, UserName);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        entries = await entryService.GetProfilePageEntries(currentPage, 10, UserName);
+    }
+}

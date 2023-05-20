@@ -81,7 +81,7 @@ label {
 }
 
 .list-group-item {
-    background-color: #2d2d2d;
+    background-color: #082443;
     color: #bdbdbd;
     padding: 8px 10px 8px 2px;
 }
@@ -109,12 +109,12 @@ label {
 .entry-author {
     color: #53a245;
     font-size: 13px;
-    background-color: #2d2d2d;
+    background-color: #082443;
 }
 
     .entry-author a {
         color: #53a245;
-        background-color: #2d2d2d;
+        background-color: #082443;
     }
 
         .entry-author a:hover {
@@ -124,12 +124,12 @@ label {
 .entry-date {
     color: #bdbdbd;
     font-size: 12px;
-    background-color: #2d2d2d;
+    background-color: #082443;
 }
 
     .entry-date a {
         color: #666666;
-        background-color: #2d2d2d;
+        background-color: #082443;
     }
 
         .entry-date a:hover, a:focus {
@@ -195,7 +195,7 @@ label {
 
 
 .card-body {
-    background-color: #2d2d2d;
+    background-color: #082443;
     padding: 5px;
 }
 

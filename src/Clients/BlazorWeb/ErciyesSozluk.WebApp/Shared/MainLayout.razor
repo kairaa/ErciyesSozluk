@@ -1,19 +1,21 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
 @inherits LayoutComponentBase
 
-<div class="navbar fixed-top text-white">
+<div class="navbar fixed-top text-white" style="background-color: #082443;">
 
     <div class="logo">
-        <a href="/" class="bg-white">
-            <img class="my-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Ek%C5%9Fi_S%C3%B6zl%C3%BCk_yeni_logo.svg/2560px-Ek%C5%9Fi_S%C3%B6zl%C3%BCk_yeni_logo.svg.png" />
+        <a href="/">
+            <img class="my-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Erciyes_University_logo.svg/800px-Erciyes_University_logo.svg.png" />
+            <span class="logo-text">Erciyes Sözlük</span>
         </a>
     </div>
 
-    <div class="search-box" style="width: 325px;">
+    <div class="search-box" style="width: 470px;">
 
         <div class="input-group">
             <div class="form-outline">
                 <input type="search"
+                    style="width: 400px; border-radius: 5px 0 0 5px;"
                        class="form-control small"
                        @bind-value="@searchText"
                        @bind-value:event="oninput"

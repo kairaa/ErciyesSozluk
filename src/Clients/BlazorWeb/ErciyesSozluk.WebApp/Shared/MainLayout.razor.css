@@ -1,31 +1,34 @@
 .navbar {
     border-bottom: 1px solid #d6d5d5;
-    height: 6.5rem;
+    height: 5.5rem;
     align-items: flex-start;
     position: sticky;
 }
 
 .my-logo{
-    height: 29px;
+    height: 65px;
 }
 
 .logo {
     margin-top: 10px;
-    background-color: white;
     position: absolute;
     top: 0;
     left: 100px;
-    width: 30%;
+    width: 50%;
     height: 30px;
     display: flex;
     justify-content: left;
     cursor: pointer;
-    width: 180px;
     margin-bottom: 10px;
 }
 
+.logo-text{
+    margin-left: 10px;
+    font-size: 1.4rem;
+}
+
 .top-nav {
-    margin-top: 10px;
+    margin-top: 20px;
     position: absolute;
     top: 0;
     right: 100px;
@@ -42,12 +45,10 @@ a.top-nav-item:hover {
 }
 
 .search-box {
-    margin-top: 10px;
-    left: 350px;
+    margin-top: 20px;
+    left: 415px;
     position: absolute;
     top: 0;
-    width: 250px;
-    height: 50px;
 }
 
 
@@ -123,7 +124,7 @@ a.more-data:hover {
 }
 
 .sidebar {
-    background-color: #2d2d2d;
+    background-color: #082443;
     margin-left: -10px;
     max-height: 100%;
     overflow-y: scroll;

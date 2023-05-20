@@ -48,7 +48,8 @@ namespace ErciyesSozluk.WebApp.Infrastructure.Services
                 if (httpResponse.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
                     var responseStr = await httpResponse.Content.ReadAsStringAsync();
-                    var validation = JsonSerializer.Deserialize<ValidationResponseModel>(responseStr);
+                    var validation = JsonSerializer.Deserialize<ValidationResponseModel>
+                        (responseStr, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
                     responseStr = validation.FlattenErrors;
                     throw new DatabaseValidationException(responseStr);
                 }

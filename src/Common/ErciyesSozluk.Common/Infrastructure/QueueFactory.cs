@@ -56,5 +56,32 @@ namespace ErciyesSozluk.Common.Infrastructure
             consumer.Model.QueueBind(queueName, exchangeName, queueName);
             return consumer;
         }
+
+        public static EventingBasicConsumer Receive<T>(this EventingBasicConsumer consumer, Action<T> action)
+        {
+            //rabbitmq join işlemi
+            consumer.Received += (m, eventArgs) =>
+            {
+                //rabbitmq'dan kayıt geldiğinde yapılacak işlemler
+                //data json olarak okunur
+                var body = eventArgs.Body.ToArray();
+                var message = Encoding.UTF8.GetString(body);
+                //okunan json ilgili tipe cast edilir
+                var model = JsonSerializer.Deserialize<T>(message);
+                action(model);
+                consumer.Model.BasicAck(eventArgs.DeliveryTag, false);
+            };
+
+            return consumer;
+        }
+
+        public static EventingBasicConsumer StartConsuming(this EventingBasicConsumer consumer, string queueName)
+        {
+            consumer.Model.BasicConsume(queue: queueName,
+                autoAck: false,
+                consumer: consumer);
+
+            return consumer;
+        }
     }
 }
