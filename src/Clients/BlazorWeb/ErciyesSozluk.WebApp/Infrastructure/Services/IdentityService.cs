@@ -14,6 +14,11 @@ namespace ErciyesSozluk.WebApp.Infrastructure.Services
 {
     public class IdentityService : IIdentityService
     {
+        private JsonSerializerOptions defaultJsonOpt => new JsonSerializerOptions()
+        {
+            PropertyNameCaseInsensitive = true
+        };
+
         private readonly HttpClient httpClient;
         private readonly ISyncLocalStorageService syncLocalStorageService;
         private readonly AuthenticationStateProvider authenticationStateProvider;
@@ -53,7 +58,7 @@ namespace ErciyesSozluk.WebApp.Infrastructure.Services
                 if (httpResponse.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
                     responseStr = await httpResponse.Content.ReadAsStringAsync();
-                    var validation = JsonSerializer.Deserialize<ValidationResponseModel>(responseStr);
+                    var validation = JsonSerializer.Deserialize<ValidationResponseModel>(responseStr, defaultJsonOpt);
                     responseStr = validation.FlattenErrors;
                     throw new DatabaseValidationException(responseStr);
                 }

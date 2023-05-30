@@ -39,14 +39,14 @@
         if (args.IsFaved)
         {
             //entry'nin başlangıçta fav'lanmadığı, fav butonuna fav'a eklemek için tıklanıldığı durum
-            await favService.CreateEntryFav(args.EntryId.Value);
+            await favService.CreateEntryCommentFav(args.EntryId.Value);
             EntryComment.IsFavorited = true;
             EntryComment.FavoritedCount++;
         }
         else
         {
             //entry'nin başlangıçta fav'landığı, fav butonuna fav'ı silmek için tıklanıldığı durum
-            await favService.DeleteEntryFav(args.EntryId.Value);
+            await favService.DeleteEntryCommentFav(args.EntryId.Value);
             EntryComment.IsFavorited = false;
             EntryComment.FavoritedCount--;
         }
@@ -59,7 +59,7 @@
         if (args.UpVoteDeleted || args.DownVoteDeleted)
         {
             //entry'nin başlangıçta vote'landığı, vote'u silmek için tıklanılan durum
-            await voteService.DeleteEntryVote(args.EntryId);
+            await voteService.DeleteEntryCommentVote(args.EntryId);
             EntryComment.VoteType = VoteType.None;
             return;
         }
@@ -67,7 +67,7 @@
         if (args.IsUpVoteClicked)
         {
             //entry'nin upvote'landığı durum
-            await voteService.CreateEntryUpVote(args.EntryId);
+            await voteService.CreateEntryCommentUpVote(args.EntryId);
             EntryComment.VoteType = VoteType.UpVote;
             return;
         }
@@ -75,7 +75,7 @@
         if (args.IsDownVoteClicked)
         {
             //entry'nin downvote'landığı durum
-            await voteService.CreateEntryDownVote(args.EntryId);
+            await voteService.CreateEntryCommentDownVote(args.EntryId);
             EntryComment.VoteType = VoteType.DownVote;
             return;
         }
