@@ -28,22 +28,21 @@ namespace ErciyesSozluk.Projections.UserService.Services
         public Task SendEmail(string toEmailAddress, string content)
         {
             //send email process
-            //TODO: burayı design projesinden al
 
             SmtpClient client = new SmtpClient();
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.EnableSsl = true;
-            client.Host = "smtp.gmail.com";
+            client.Host = "smtp.office365.com";
             client.Port = 587;
 
             // setup Smtp authentication
             System.Net.NetworkCredential credentials =
-                new System.Net.NetworkCredential("kayracakiroglu@outlook.com", "Aa7waw37x.");
+                new System.Net.NetworkCredential("erusozluk@outlook.com", "Aa7waw37x.");
             client.UseDefaultCredentials = false;
             client.Credentials = credentials;
 
             MailMessage msg = new MailMessage();
-            msg.From = new MailAddress("kayracakiroglu@outlook.com");
+            msg.From = new MailAddress("erusozluk@outlook.com");
             msg.To.Add(new MailAddress(toEmailAddress));
 
             msg.Subject = "Onay Maili";
